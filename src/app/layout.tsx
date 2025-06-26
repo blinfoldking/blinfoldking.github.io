@@ -25,9 +25,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased w-[100vw] h-[100vh] pt-4 pb-4 pl-12 `}
       >
-        {children}
+        <div className="absolute left-0 top-0 h-[100%] w-[45px]">
+          <div className="flex flex-col justify-center items-center h-[100%]">
+            <div className="rotate-270 text-gray-500 font-mono">
+              <a href="https://www.blinfoldking.dev">blinfoldking.dev</a>
+            </div>
+          </div>
+        </div>
+        <div className="inset-shadow-md border-black rounded-bl-xl rounded-tl-xl h-[100%] p-4 bg-gray-50">
+          {children}
+        </div>
       </body>
     </html>
   );
