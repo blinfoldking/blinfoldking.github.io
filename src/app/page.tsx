@@ -2,9 +2,8 @@
 
 import useNavigation from "@/hook/useNavigation";
 import Link from "next/link";
-import { useEffect } from "react";
 
-export default function Home(props: { test: string }) {
+export default function Home() {
   const cardStyle = "flex shadow-md rounded-xl overflow-hidden";
   const titleStyle =
     "bg-linear-to-r from-black to-black w-[100%] text-white pl-2";
