@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { create } from "zustand";
 
 const useNavigationStore = create((set) => {
@@ -18,6 +18,8 @@ const useNavigation = () => {
   /* @ts-ignore */
   const setExit = useNavigationStore((state) => state.setExit);
 
+  const pathname = usePathname();
+
   const navigate = async (target: string) => {
     setExit(true);
     await new Promise((res) => setTimeout(res, 250));
@@ -26,7 +28,7 @@ const useNavigation = () => {
     setExit(false);
   };
 
-  return { navigate, exit };
+  return { navigate, exit, pathname };
 };
 
 export default useNavigation;

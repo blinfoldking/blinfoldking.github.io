@@ -5,6 +5,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import useNavigation from "@/hook/useNavigation";
 import React from "react";
+import { FaPalette, FaHouse, FaUser, FaPencil } from "react-icons/fa6";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,6 +35,28 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased w-[100vw] h-[100vh] pt-4 pb-4 pl-12 `}
       >
         <div className="absolute left-0 top-0 h-[100%] w-[45px]">
+          <div className="flex flex-col items-center pt-10 gap-4 absolute justify-center w-[100%]">
+            {[
+              { elem: FaHouse, path: "/" },
+              {
+                elem: FaUser,
+                path: "/about",
+              },
+              { elem: FaPencil, path: "/blog" },
+              { elem: FaPalette, path: "/projecs" },
+            ].map((item) => (
+              <a
+                key={item.path}
+                onClick={() => navigate(item.path)}
+                className="h-[30px] w-[30px] flex hover:bg-black rounded-full"
+              >
+                <div className="w-[30px] h-[30px] flex justify-center items-center">
+                  {<item.elem className="hover:text-white"></item.elem>}
+                </div>
+                <div className="ml-4 hidden group-hover:block">pathname</div>
+              </a>
+            ))}
+          </div>
           <div className="flex flex-col justify-center items-center h-[100%]">
             <div className="rotate-270 text-gray-500">
               <a className="font-epetri" onClick={() => navigate("/")}>
