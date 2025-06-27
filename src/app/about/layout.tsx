@@ -7,8 +7,10 @@ export default function MDXLayout({ children }: { children: React.ReactNode }) {
   const { exit } = useNavigation();
 
   return (
-    <div className={`prose lg:prose-xl transition-all ${exit && "opacity-0"}`}>
-      {children}
+    <div
+      className={`transition-all ${exit && "opacity-0"} shadow-md w-[100%] h-[100%] rounded-xl p-4 animate-appear-l-750`}
+    >
+      <div className="prose">{children}</div>
     </div>
   );
 }

@@ -2,15 +2,14 @@
 
 import useNavigation from "@/hook/useNavigation";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect } from "react";
 
 export default function Home(props: { test: string }) {
   const cardStyle = "flex shadow-md rounded-xl overflow-hidden";
   const titleStyle =
     "bg-linear-to-r from-black to-black w-[100%] text-white pl-2";
 
-  const { navigate, exit } = useNavigation();
+  const { navigate, exit, setExit } = useNavigation();
 
   const handleNavigate = (path: string) => {
     navigate(path);

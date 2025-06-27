@@ -1,7 +1,13 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { create } from "zustand";
+
+interface NavigationState {
+  isExit: boolean;
+  setExit: (isExit: boolean) => {};
+}
 
 const useNavigationStore = create((set) => {
   return {
@@ -13,22 +19,26 @@ const useNavigationStore = create((set) => {
 const useNavigation = () => {
   const router = useRouter();
 
-  /* @ts-ignore */
-  const exit = useNavigationStore((state) => state.isExit);
-  /* @ts-ignore */
-  const setExit = useNavigationStore((state) => state.setExit);
+  const exit = useNavigationStore((state: NavigationState) => state.isExit);
+  const setExit = useNavigationStore((state: NavigationState) => state.setExit);
 
   const pathname = usePathname();
 
-  const navigate = async (target: string) => {
-    setExit(true);
-    await new Promise((res) => setTimeout(res, 250));
-    router.push(target);
-    await new Promise((res) => setTimeout(res, 250));
+  useEffect(() => {
+    console.log(">>", { pathname });
     setExit(false);
+  }, [pathname]);
+
+  const navigate = async (target: string) => {
+    if (target === pathname) {
+      return;
+    }
+    setExit(true);
+    await new Promise((res) => setTimeout(res, 500));
+    router.push(target);
   };
 
-  return { navigate, exit, pathname };
+  return { navigate, exit, pathname, setExit };
 };
 
 export default useNavigation;
