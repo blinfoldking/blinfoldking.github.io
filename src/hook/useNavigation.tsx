@@ -19,13 +19,12 @@ const useNavigationStore = create((set) => {
 const useNavigation = () => {
   const router = useRouter();
 
-  const exit = useNavigationStore((state: NavigationState) => state.isExit);
-  const setExit = useNavigationStore((state: NavigationState) => state.setExit);
+  const exit = useNavigationStore((state: any) => state.isExit);
+  const setExit = useNavigationStore((state: any) => state.setExit);
 
   const pathname = usePathname();
 
   useEffect(() => {
-    console.log(">>", { pathname });
     setExit(false);
   }, [pathname]);
 

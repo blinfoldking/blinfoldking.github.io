@@ -8,7 +8,7 @@ export default function Home() {
   const titleStyle =
     "bg-linear-to-r from-black to-black w-[100%] text-white pl-2";
 
-  const { navigate, exit, setExit } = useNavigation();
+  const { navigate, exit } = useNavigation();
 
   const handleNavigate = (path: string) => {
     navigate(path);
