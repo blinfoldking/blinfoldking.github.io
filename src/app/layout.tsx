@@ -27,7 +27,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { navigate } = useNavigation();
+  const { navigate, pathname } = useNavigation();
 
   return (
     <html lang="en">
@@ -43,15 +43,19 @@ export default function RootLayout({
                 path: "/about",
               },
               { elem: FaPencil, path: "/blog" },
-              { elem: FaPalette, path: "/projecs" },
+              { elem: FaPalette, path: "/projects" },
             ].map((item) => (
               <a
                 key={item.path}
                 onClick={() => navigate(item.path)}
-                className="h-[30px] w-[30px] flex hover:bg-black rounded-full"
+                className={`h-[30px] w-[30px] flex hover:bg-black ${item.path === pathname ? "bg-black" : ""} rounded-full`}
               >
                 <div className="w-[30px] h-[30px] flex justify-center items-center">
-                  {<item.elem className="hover:text-white"></item.elem>}
+                  {
+                    <item.elem
+                      className={`hover:text-white ${item.path === pathname ? "text-white" : ""}`}
+                    ></item.elem>
+                  }
                 </div>
                 <div className="ml-4 hidden group-hover:block">pathname</div>
               </a>
