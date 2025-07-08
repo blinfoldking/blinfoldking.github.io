@@ -22,12 +22,10 @@ export default function Home() {
         <div
           className={`${cardStyle} row-span-2 col-span-2 bg-gray-100 animate-appear-l-500`}
         >
-          <div className="bg-linear-to-l from-white to-transparent h-[100%] w-[100%] prose flex flex-col items-start justify-end">
-            <h1 className="font-epetri text-8xl font-black opacity-5 p-8">
-              About
-            </h1>
+          <div className="bg-linear-to-l from-white to-transparent h-[100%] w-[100%] flex flex-col items-start justify-end">
+            <h1 className="font-epetri text-8xl font-black opacity-5">About</h1>
           </div>
-          <div className="bg-white h-[100%] w-[100%] flex flex-col justify-center gap-4 prose">
+          <div className="bg-white h-[100%] w-[100%] flex flex-col justify-center gap-4">
             <div>
               <h1 className={titleStyle}>About</h1>
               <div className="pl-8 pr-8">
@@ -47,7 +45,7 @@ export default function Home() {
           </div>
         </div>
         <div className={`${cardStyle} bg-gray-100 animate-appear-l-750`}>
-          <div className="flex flex-col prose w-[100%] h-[200%] transition-all duration-500 hover:h-[100%]">
+          <div className="flex flex-col w-[100%] h-[200%] transition-all duration-500 hover:h-[100%]">
             <div className=" bg-linear-to-t from-white to-transparent h-[60%] w-[100%] flex items-end">
               <h2 style={{ margin: 0 }} className={titleStyle}>
                 Devlog #0:
@@ -63,7 +61,7 @@ export default function Home() {
           </div>
         </div>
         <div
-          className={`${cardStyle} bg-white  flex-col flex justify-center items-center prose delay-500 animate-appear-l-1000`}
+          className={`${cardStyle} bg-white  flex-col flex justify-center items-center delay-500 animate-appear-l-1000`}
         >
           <h2 className="m-0" style={{ margin: 0 }}>
             Find me anywhere:

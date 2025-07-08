@@ -9,11 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fontsource-variable/ibm-plex-sans": "^5.2.6",
+    "@fontsource/ibm-plex-mono": "^5.2.6",
+    "@fontsource/ibm-plex-serif": "^5.2.6",
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
     "@next/mdx": "^15.3.4",
     "@tailwindcss/typography": "^0.5.16",
     "@types/mdx": "^2.0.13",
+    "@uidotdev/usehooks": "github:uidotdev/usehooks",
     "next": "15.3.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

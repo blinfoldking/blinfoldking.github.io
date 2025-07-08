@@ -8,6 +8,15 @@ importers:
 
   .:
     dependencies:
+      '@fontsource-variable/ibm-plex-sans':
+        specifier: ^5.2.6
+        version: 5.2.6
+      '@fontsource/ibm-plex-mono':
+        specifier: ^5.2.6
+        version: 5.2.6
+      '@fontsource/ibm-plex-serif':
+        specifier: ^5.2.6
+        version: 5.2.6
       '@mdx-js/loader':
         specifier: ^3.1.0
         version: 3.1.0(acorn@8.15.0)
@@ -23,6 +32,9 @@ importers:
       '@types/mdx':
         specifier: ^2.0.13
         version: 2.0.13
+      '@uidotdev/usehooks':
+        specifier: github:uidotdev/usehooks
+        version: https://codeload.github.com/uidotdev/usehooks/tar.gz/945436df0037bc21133379a5e13f1bd73f1ffc36(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       next:
         specifier: 15.3.4
         version: 15.3.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -127,6 +139,15 @@ packages:
   '@eslint/plugin-kit@0.3.3':
     resolution: {integrity: sha512-1+WqvgNMhmlAambTvT3KPtCl/Ibr68VldY2XY40SL1CE0ZXiakFR/cbTspaF5HsnpDMvcYYoJHfl4980NBjGag==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@fontsource-variable/ibm-plex-sans@5.2.6':
+    resolution: {integrity: sha512-hnuya7tsdaEiub463GFrhKDnmViTFKkJb9S+H+Fk6sMnr5dL/5DlAxeCZyXMK8WfjHktDiaEOIWPRZBQVKV0dw==}
+
+  '@fontsource/ibm-plex-mono@5.2.6':
+    resolution: {integrity: sha512-LTZJNTcpoT19fmwERZNMDI+ljHueuyhF2Qn+bICJ4Y4hxBLAAoJ2MRsGnyp0QNutW6t/25eyZpvaUK1LDrCo7Q==}
+
+  '@fontsource/ibm-plex-serif@5.2.6':
+    resolution: {integrity: sha512-/FyBI9qciE6QQjF0Q2Uul68tz9vPsGZgh13ftKcyHsGkP8TvcW+2H77KurT7rN3usWHEbGgjoUkSzUEG7z+fRQ==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -597,6 +618,14 @@ packages:
   '@typescript-eslint/visitor-keys@8.35.0':
     resolution: {integrity: sha512-zTh2+1Y8ZpmeQaQVIc/ZZxsx8UzgKJyNg1PTvjzC7WMhPSVS8bfDX34k1SrwOf016qd5RU3az2UxUNue3IfQ5g==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@uidotdev/usehooks@https://codeload.github.com/uidotdev/usehooks/tar.gz/945436df0037bc21133379a5e13f1bd73f1ffc36':
+    resolution: {tarball: https://codeload.github.com/uidotdev/usehooks/tar.gz/945436df0037bc21133379a5e13f1bd73f1ffc36}
+    version: 2.4.1
+    engines: {node: '>=16'}
+    peerDependencies:
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
 
   '@ungap/structured-clone@1.3.0':
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
@@ -2302,6 +2331,12 @@ snapshots:
       '@eslint/core': 0.15.1
       levn: 0.4.1
 
+  '@fontsource-variable/ibm-plex-sans@5.2.6': {}
+
+  '@fontsource/ibm-plex-mono@5.2.6': {}
+
+  '@fontsource/ibm-plex-serif@5.2.6': {}
+
   '@humanfs/core@0.19.1': {}
 
   '@humanfs/node@0.16.6':
@@ -2747,6 +2782,11 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.35.0
       eslint-visitor-keys: 4.2.1
+
+  '@uidotdev/usehooks@https://codeload.github.com/uidotdev/usehooks/tar.gz/945436df0037bc21133379a5e13f1bd73f1ffc36(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
 
   '@ungap/structured-clone@1.3.0': {}
 
