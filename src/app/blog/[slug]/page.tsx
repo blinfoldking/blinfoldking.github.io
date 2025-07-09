@@ -1,0 +1,24 @@
+import fs from "fs";
+import dynamic from "next/dynamic";
+import path from "path";
+
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  const files = fs.readdirSync(path.join(process.cwd(), "posts"));
+
+  const res = files.map((file) => ({
+    slug: file.split(".")[0],
+  }));
+
+  return res;
+}
+
+export default async function Blog({ params }: any) {
+  const { slug } = await params;
+
+  const filename = `../../../../posts/${slug}.mdx`;
+  const Page = dynamic(() => import(filename));
+
+  return <Page />;
+}
