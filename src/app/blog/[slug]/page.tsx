@@ -17,8 +17,7 @@ export function generateStaticParams() {
 export default async function Blog({ params }: any) {
   const { slug } = await params;
 
-  const filename = `../../../../posts/${slug}.mdx`;
-  const Page = dynamic(() => import(filename));
+  const Page = dynamic(() => import(`../../../../posts/${slug}.mdx`));
 
   return <Page />;
 }
