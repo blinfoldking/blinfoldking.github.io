@@ -2,13 +2,36 @@
 
 import useNavigation from "@/hook/useNavigation";
 
-export default function NavLink(props: any) {
-  const { target, children } = props;
-  const { navigate } = useNavigation();
+export default function NavLink({
+  target,
+  back,
+  link,
+  children,
+  ...props
+}: {
+  link?: boolean;
+  target?: string;
+  back?: true;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  const { navigate, goBack } = useNavigation();
 
-  return (
-    <a onClick={() => navigate(target)} {...props}>
+  const onclick = () => {
+    if (!back) {
+      navigate(target);
+    } else {
+      goBack();
+    }
+  };
+
+  return link ? (
+    <a onClick={onclick} {...props}>
       {children}
     </a>
+  ) : (
+    <div onClick={onclick} {...props}>
+      {children}
+    </div>
   );
 }

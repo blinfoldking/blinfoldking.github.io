@@ -4,7 +4,7 @@
 
 :root {
   --light: #eeeeee;
-  --dark: #131b23;
+  --dark: #000;
   --background: var(--light);
   --foreground: var(--dark);
 }
@@ -25,12 +25,10 @@
   --animate-appear-l-1000: appear-l 1000ms ease-in-out;
   @keyframes appear-l {
     0% {
-      transform: translateX(100%);
       opacity: 0;
     }
 
     100% {
-      transform: translateX(0%);
       opacity: 1;
     }
   }
@@ -73,4 +71,9 @@ a:hover {
 .no-scrollbar {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+.vertical-text {
+  writing-mode: vertical-lr;
+  text-orientation: upright;
 }

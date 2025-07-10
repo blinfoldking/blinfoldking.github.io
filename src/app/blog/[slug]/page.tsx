@@ -1,5 +1,5 @@
+import PageComponent from "@/components/PageComponent";
 import fs from "fs";
-import dynamic from "next/dynamic";
 import path from "path";
 
 export const dynamicParams = false;
@@ -17,7 +17,13 @@ export function generateStaticParams() {
 export default async function Blog({ params }: any) {
   const { slug } = await params;
 
-  const Page = dynamic(() => import(`../../../../posts/${slug}.mdx`));
+  const { default: Page, metadata } = await import(
+    `../../../../posts/${slug}.mdx`
+  );
 
-  return <Page />;
+  return (
+    <PageComponent {...metadata}>
+      <Page></Page>
+    </PageComponent>
+  );
 }

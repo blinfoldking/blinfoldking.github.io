@@ -12,6 +12,7 @@ import { FaPalette, FaHouse, FaUser, FaPencil } from "react-icons/fa6";
 import "@fontsource-variable/ibm-plex-sans";
 import "@fontsource/ibm-plex-serif";
 import "@fontsource/ibm-plex-mono";
+import NavLink from "@/components/NavLink";
 
 export default function RootLayout({
   children,
@@ -30,10 +31,6 @@ export default function RootLayout({
           <div className="flex flex-col items-center pt-10 gap-4 absolute justify-center w-[100%]">
             {[
               { elem: FaHouse, path: "/" },
-              {
-                elem: FaUser,
-                path: "/about",
-              },
               { elem: FaPencil, path: "/blog" },
               { elem: FaPalette, path: "/projects" },
             ].map((item) => (
@@ -54,14 +51,14 @@ export default function RootLayout({
             ))}
           </div>
           <div className="flex flex-col justify-center items-center h-[100%]">
-            <div className="rotate-270 text-gray-500">
-              <a className="font-epetri" onClick={() => navigate("/")}>
+            <div className="text-black text-2xl vertical-text">
+              <NavLink className="font-epetri" target="/">
                 blinfoldking
-              </a>
+              </NavLink>
             </div>
           </div>
         </div>
-        <div className="border-black rounded-bl-xl rounded-tl-xl min-w-[100%] h-[100%] bg-white overflow-scroll p-4  inset-shadow-md">
+        <div className="rounded-bl-xl rounded-tl-xl min-w-[100%] h-[100%] bg-white overflow-scroll inset-shadow-md">
           {children}
         </div>
       </body>

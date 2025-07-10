@@ -10,7 +10,12 @@ export default function Blog() {
         const target = file.split(".")[0];
 
         return (
-          <NavLink key={file} target={`/blog/${target}`} className="underline">
+          <NavLink
+            link
+            key={file}
+            target={`/blog/${target}`}
+            className="underline"
+          >
             {target}
           </NavLink>
         );

@@ -1,5 +1,4 @@
 import type { MDXComponents } from "mdx/types";
-import Link from "next/link";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   const slugify = (children: any) => {
@@ -8,7 +7,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 
   return {
     h1: ({ children }) => (
-      <Link href={`#${slugify(children)}`}>
+      <a href={`#${slugify(children)}`}>
         <h1 id={slugify(children)} className="group items-center">
           {children}
           <span className="opacity-0 group-hover:opacity-50">
@@ -16,23 +15,23 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             #{slugify(children)}
           </span>
         </h1>
-      </Link>
+      </a>
     ),
 
     h2: ({ children }) => (
-      <Link href={`#${slugify(children)}`}>
+      <a href={`#${slugify(children)}`}>
         <h2 id={slugify(children)} className="group items-center">
           {children}
-          <span className="opacity-0 group-hover:opacity-50">
+          <span className="opacity-0 group-hover:opacity-50 hover:opacity-0">
             {" "}
             #{slugify(children)}
           </span>
         </h2>
-      </Link>
+      </a>
     ),
 
     h3: ({ children }) => (
-      <Link href={`#${slugify(children)}`}>
+      <a href={`#${slugify(children)}`}>
         <h3 id={slugify(children)} className="group items-center">
           {children}
           <span className="opacity-0 group-hover:opacity-50">
@@ -40,7 +39,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             #{slugify(children)}
           </span>
         </h3>
-      </Link>
+      </a>
     ),
 
     ...components,

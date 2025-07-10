@@ -37,7 +37,13 @@ const useNavigation = () => {
     router.push(target);
   };
 
-  return { navigate, exit, pathname, setExit };
+  const goBack = async () => {
+    setExit(true);
+    await new Promise((res) => setTimeout(res, 500));
+    router.back();
+  };
+
+  return { navigate, exit, pathname, setExit, goBack };
 };
 
 export default useNavigation;
