@@ -1,6 +1,7 @@
 import PageComponent from "@/components/PageComponent";
 import fs from "fs";
 import path from "path";
+import PageView from "./view";
 
 export const dynamicParams = false;
 
@@ -22,8 +23,8 @@ export default async function Blog({ params }: any) {
   );
 
   return (
-    <PageComponent {...metadata}>
+    <PageView metadata={metadata}>
       <Page></Page>
-    </PageComponent>
+    </PageView>
   );
 }
