@@ -19,7 +19,7 @@ export default function NavLink({
 
   const onclick = () => {
     if (!back) {
-      navigate(target);
+      target && navigate(target);
     } else {
       goBack();
     }
