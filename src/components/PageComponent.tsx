@@ -3,6 +3,7 @@
 import { useMeasure } from "@uidotdev/usehooks";
 import { FaArrowDown, FaChevronLeft } from "react-icons/fa6";
 import NavLink from "./NavLink";
+import { useRef } from "react";
 
 export default function PageComponent({
   children,
@@ -18,6 +19,7 @@ export default function PageComponent({
   className?: string;
 }) {
   const [ref, { width, height }] = useMeasure();
+  const topRef = useRef(null);
 
   return (
     <div className={`h-[100%] ${className ?? ""} inset-shadow-md`} ref={ref}>
@@ -55,16 +57,20 @@ export default function PageComponent({
             </div>
           </div>
           <div className="flex justify-start items-center pb-24 flex-col">
-            <div className="rounded-full bg-white p-4 m-4 shadow-md">
-              <a href="#top">
-                <FaArrowDown className="hover:text-black" />
-              </a>
+            <div
+              className="rounded-full bg-white p-4 m-4 shadow-md"
+              onClick={() =>
+                // @ts-ignore
+                topRef?.current?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
+              <FaArrowDown className="hover:text-black" />
             </div>
           </div>
         </div>
-        <div className="flex justify-center w-[100%] bg-white">
-          <div className="md:w-[50%] sm:w-[75%] h-[100vh] border-dashed p-4">
-            <div id="top"></div>
+        <div className="flex justify-center w-[100%] min-h-[100vh] bg-white">
+          <div className="md:w-[50%] sm:w-[75%] min-h-[100vh] border-dashed p-4">
+            <div id="top" ref={topRef}></div>
             <div className="prose min-w-[100%]">{children}</div>
             <div className="flex w-[100%] justify-between mt-8"></div>
           </div>
