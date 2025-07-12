@@ -31,7 +31,7 @@ export default function PageComponent({
           style={{
             minWidth: width ? `${width}px` : "100%",
             minHeight: `${height}px`,
-            background: `url('${bg}')`,
+            background: bg && `url('${bg}')`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             backgroundPosition: "center",

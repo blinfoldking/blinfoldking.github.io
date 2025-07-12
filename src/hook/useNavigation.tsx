@@ -1,6 +1,10 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
+import {
+  usePathname,
+  useRouter,
+  useSelectedLayoutSegment,
+} from "next/navigation";
 import { useEffect } from "react";
 import { create } from "zustand";
 
@@ -21,6 +25,7 @@ const useNavigation = () => {
 
   const exit = useNavigationStore((state: any) => state.isExit);
   const setExit = useNavigationStore((state: any) => state.setExit);
+  const segment = useSelectedLayoutSegment();
 
   const pathname = usePathname();
 
@@ -43,7 +48,7 @@ const useNavigation = () => {
     router.back();
   };
 
-  return { navigate, exit, pathname, setExit, goBack };
+  return { navigate, exit, pathname, setExit, goBack, segment };
 };
 
 export default useNavigation;

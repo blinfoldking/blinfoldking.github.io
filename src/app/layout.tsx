@@ -2,11 +2,10 @@
 
 // Supports weights 400-900
 
-import type { Metadata } from "next";
 import "./globals.css";
 import useNavigation from "@/hook/useNavigation";
 import React from "react";
-import { FaPalette, FaHouse, FaUser, FaPencil } from "react-icons/fa6";
+import { FaPalette, FaNewspaper, FaRocket } from "react-icons/fa6";
 
 // font source
 import "@fontsource-variable/ibm-plex-sans";
@@ -19,7 +18,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { navigate, pathname } = useNavigation();
+  const { navigate, pathname, segment } = useNavigation();
+  console.log(">>", { segment, pathname });
 
   return (
     <html lang="en">
@@ -30,19 +30,19 @@ export default function RootLayout({
         <div className="absolute left-0 top-0 h-[100%] w-[45px]">
           <div className="flex flex-col items-center pt-10 gap-4 absolute justify-center w-[100%]">
             {[
-              { elem: FaHouse, path: "/" },
-              { elem: FaPencil, path: "/blog" },
+              { elem: FaRocket, path: "/" },
+              { elem: FaNewspaper, path: "/blog", segment: "blog" },
               { elem: FaPalette, path: "/projects" },
             ].map((item) => (
               <a
                 key={item.path}
                 onClick={() => navigate(item.path)}
-                className={`h-[30px] w-[30px] flex hover:bg-black ${item.path === pathname ? "bg-black" : ""} rounded-full`}
+                className={`h-[30px] w-[30px] flex hover:bg-black ${item.path === pathname || item.segment === segment ? "bg-black" : ""} rounded-full`}
               >
                 <div className="w-[30px] h-[30px] flex justify-center items-center">
                   {
                     <item.elem
-                      className={`hover:text-white ${item.path === pathname ? "text-white" : ""}`}
+                      className={`hover:text-white ${item.path === pathname || item.segment === segment ? "text-white" : ""}`}
                     ></item.elem>
                   }
                 </div>

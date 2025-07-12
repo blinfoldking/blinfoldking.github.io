@@ -1,25 +1,12 @@
-import path from "path";
-import fs from "fs";
-import NavLink from "@/components/NavLink";
+import blogService from "@/services/blog";
+import BlogList from "./list";
 
-export default function Blog() {
-  const files = fs.readdirSync(path.join(process.cwd(), "posts"));
+export default async function Blog() {
+  const posts = await blogService.getPosts();
+
   return (
-    <div>
-      {files.map((file) => {
-        const target = file.split(".")[0];
-
-        return (
-          <NavLink
-            link
-            key={file}
-            target={`/blog/${target}`}
-            className="underline"
-          >
-            {target}
-          </NavLink>
-        );
-      })}
-    </div>
+    <>
+      <BlogList posts={posts} />
+    </>
   );
 }

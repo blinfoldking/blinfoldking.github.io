@@ -21,7 +21,7 @@ export default function PageView({
       // @ts-ignore
       onScroll={(e) => setScroll(e.target.scrollTop)}
     >
-      <PageComponent {...metadata} scroll={scroll}>
+      <PageComponent {...metadata} scroll={scroll} back>
         {children}
       </PageComponent>
     </div>

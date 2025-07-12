@@ -1,4 +1,3 @@
-import PageComponent from "@/components/PageComponent";
 import fs from "fs";
 import path from "path";
 import PageView from "./view";
@@ -6,7 +5,9 @@ import PageView from "./view";
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  const files = fs.readdirSync(path.join(process.cwd(), "posts"));
+  const files = fs.readdirSync(path.join(process.cwd(), "src/contents/posts"));
+
+  console.log(">>", files);
 
   const res = files.map((file) => ({
     slug: file.split(".")[0],
@@ -19,7 +20,7 @@ export default async function Blog({ params }: any) {
   const { slug } = await params;
 
   const { default: Page, metadata } = await import(
-    `../../../../posts/${slug}.mdx`
+    `@/contents/posts/${slug}.mdx`
   );
 
   return (

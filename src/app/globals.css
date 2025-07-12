@@ -32,6 +32,28 @@
       opacity: 1;
     }
   }
+
+  --animate-appear-500: appear 500ms ease-in-out;
+  --animate-disappear-500: disappear 500ms ease-in-out;
+  @keyframes appear {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes disappear {
+    0% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
 }
 
 @font-face {
@@ -41,7 +63,7 @@
 
 @theme {
   --inset-shadow-md: inset 0 2px 3px rgba(0, 0, 0, 0.25);
-  --font-epetri: Epetri_Regular1;
+  --font-epetri: Epetri_Regular1, "IBM Plex Mono";
 }
 
 /* @media (prefers-color-scheme: dark) { */
