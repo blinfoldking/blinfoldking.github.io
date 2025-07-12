@@ -40,6 +40,7 @@ export default function BlogList({ posts }: { posts: BlogMetada[] }) {
                   className={`w-[100%] ${i % 2 == 1 ? "bg-gray-300" : "bg-white"} border-b-1 border-dashed`}
                   key={post.slug}
                   onMouseOver={() => setSelectedPost(post)}
+                  onMouseOut={() => setSelectedPost(null)}
                 >
                   <NavLink
                     link

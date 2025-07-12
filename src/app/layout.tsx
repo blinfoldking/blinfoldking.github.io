@@ -19,7 +19,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const { navigate, pathname, segment } = useNavigation();
-  console.log(">>", { segment, pathname });
 
   return (
     <html lang="en">

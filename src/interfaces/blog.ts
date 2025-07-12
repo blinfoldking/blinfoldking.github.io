@@ -3,4 +3,5 @@ export interface BlogMetada {
   title: string;
   createdAt: string;
   bg: string;
+  description: string;
 }

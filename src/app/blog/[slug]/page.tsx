@@ -7,8 +7,6 @@ export const dynamicParams = false;
 export function generateStaticParams() {
   const files = fs.readdirSync(path.join(process.cwd(), "src/contents/posts"));
 
-  console.log(">>", files);
-
   const res = files.map((file) => ({
     slug: file.split(".")[0],
   }));
