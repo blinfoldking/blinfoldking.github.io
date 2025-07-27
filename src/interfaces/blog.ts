@@ -1,4 +1,4 @@
-export interface BlogMetada {
+export interface BlogMetadata {
   slug: string;
   title: string;
   createdAt: string;

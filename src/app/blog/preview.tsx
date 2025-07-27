@@ -1,6 +1,6 @@
-import { BlogMetada } from "@/interfaces/blog";
+import { BlogMetadata } from "@/interfaces/blog";
 
-export default function BlogPreview({ post }: { post: BlogMetada }) {
+export default function BlogPreview({ post }: { post: BlogMetadata }) {
   const titleEmblem = (input: string) => {
     const s = input.replaceAll("_", "").replaceAll(" ", "");
     const len = s.length;

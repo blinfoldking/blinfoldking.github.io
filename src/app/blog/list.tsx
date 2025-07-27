@@ -1,15 +1,15 @@
 "use client";
 
 import NavLink from "@/components/NavLink";
-import { BlogMetada } from "@/interfaces/blog";
+import { BlogMetadata } from "@/interfaces/blog";
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import BlogPreview from "./preview";
 
-export default function BlogList({ posts }: { posts: BlogMetada[] }) {
+export default function BlogList({ posts }: { posts: BlogMetadata[] }) {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedPost, setSelectedPost] = useState<BlogMetada | null>(null);
-  const [filteredPosts, setFilteredPosts] = useState<BlogMetada[]>([]);
+  const [selectedPost, setSelectedPost] = useState<BlogMetadata | null>(null);
+  const [filteredPosts, setFilteredPosts] = useState<BlogMetadata[]>([]);
 
   useEffect(() => {
     if (!searchQuery) {

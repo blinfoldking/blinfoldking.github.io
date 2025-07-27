@@ -31,7 +31,7 @@ export default function RootLayout({
             {[
               { elem: FaRocket, path: "/" },
               { elem: FaNewspaper, path: "/blog", segment: "blog" },
-              { elem: FaPalette, path: "/projects" },
+              { elem: FaPalette, path: "/gallery" },
             ].map((item) => (
               <a
                 key={item.path}

@@ -1,18 +1,18 @@
-import { BlogMetadata } from "@/interfaces/blog";
+import { GalleryMetadata } from "@/interfaces/gallery";
 import path from "path";
 import fs from "fs";
 
-const blogService = {
+const galleryService = {
   async getPosts() {
     const files = fs.readdirSync(
-      path.join(process.cwd(), "src/contents/posts"),
+      path.join(process.cwd(), "src/contents/gallery"),
     );
 
-    const posts: BlogMetadata[] = await Promise.all(
+    const posts: GalleryMetadata[] = await Promise.all(
       files.map(async (file: string) => {
         const slug = file.split(".")[0];
 
-        const { metadata } = await import(`@/contents/posts/${slug}.mdx`);
+        const { metadata } = await import(`@/contents/gallery/${slug}.mdx`);
 
         return {
           slug,
@@ -25,4 +25,4 @@ const blogService = {
   },
 };
 
-export default blogService;
+export default galleryService;
