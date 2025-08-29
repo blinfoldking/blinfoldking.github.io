@@ -1,0 +1,156 @@
+export const metadata = {
+  title: "Devlog #1: We're Building a Game! In This Economy.",
+  createdAt: "2025-08-29T12:49:55.528Z",
+  bg: "/politics.png",
+};
+
+Selamat Malam,
+
+Hi it's a me, [@blinfoldking](https://blinfoldking.dev), the programmer, designer and project lead (i guess?) of Project Politics. we are consisted of team of three: theres me; [@muruyung](https://www.linkedin.com/in/robi-naufal-k-14275312a/), our composer, and programmer; [@radit](https://www.linkedin.com/in/radityaaydin/) our unpaid programming intern (to be fair, no one is getting paid right now). It's been roughly one year since i secretly start the project and drag the other two in. So, i though this will be a great opportunity to introduce our game and share what we've accomplished so far.
+
+> **Disclaimer**: we are still early in prototyping phase, anything you read here does not reflect the actual end products. Most of the assets we are using is free licensed assets from the internet.
+
+> **Extra Disclaimer**: sorry for my bad english :(
+
+## The Rant and The Idea
+
+The idea of the game came from my personal passion of strategy game and the disappointment of certain trend in the genre. The trend being Civilization/Culture Switching, a mechanics where you control different cultures in each era. This idea on paper, sounds solid, it somewhat mimic how civilization evolved from one culture into another. But in practice, this makes each cultures somewhat generic but most importantly it breaks the illusion of continuity each time you have to stop to choose the next culture, and suddenly every building in your empire is "upgraded" into the new version of the culture sometimes without any remnant of the previous one.
+
+With that being said, we planned our game to be modular, each aspect of your empire will be customizable. depending on what research, unlockables, and conditions you may have during a span of sessions. for example you may end up have an empire that unlock Japanese samurai army, Germanic castle, and an Arabic mosque. We hope by allowing players to customize each aspect gradually during a session, will makes each playthrough different yet would not break the illusion of continuity.
+
+## Progress So Far
+
+### What Engine We've Used
+
+Early in development, we immediately recognized the amount of objects that we will have to manage. Thus, we think a conventional object oriented engine may not easily worked. We may need something more data driven. Introducing, [Bevy Engine](https://bevy.org/), a data-driven engine (it's literally written in their website).
+
+![THE GOAT](/devlog_1_bevy.png)
+
+This decision may be our best bet. So far developing in bevy feels intuitive, easy to maintain, and very performant. Although being written in rust makes the engine pretty slow to compile (there's some tweaks you can do to make it a bit faster though).
+
+### Terrain Generation
+
+<video controls className="w-[100%]">
+  <source src="/devlog_1_menu.webm" />
+</video>
+
+This project originally started as toy project in procedural terrain generation, but as you can see from the video above the generated terrain is not "flat", there are mountains valley and hills. That's when we realize that it will be pretty cool arena for epic strategy battles and or sprawling empire.
+
+### Turn Based?
+
+We can't decide whether to make our game turn based, which will allow players to be more strategical. Or, a real-time strategy games which would force player to more reactive and adaptive to circumstances. So we used something in the middle, a calendar cycle!
+
+every players on the game make decisions in real-time, but those decision may requires certain weeks to complete. We're still not sure how long our game will be, but we have an idea around 2000-3000 years in game.
+
+<video controls className="w-[100%]">
+  <source src="/devlog_1_timekeeper.webm" />
+</video>
+
+### Army and Movement
+
+A military unit (or we just prefer to called it "Unit" for short). generally can move in any direction of the hexagon but its speed may depends on what kind of terrain it wants to go. For example climbing a higher terrain may slow the unit but going downhill may make it faster. We planned for terrain elevations and features to not only affect the movement but may also affect combat in the future.
+
+<video controls className="w-[100%]">
+  <source src="/devlog_1_movement_1.webm" />
+</video>
+
+Side note: if you think war is getting slow, you can just speed the game speed!!!
+
+<video controls className="w-[100%]">
+  <source src="/devlog_1_movement_2.webm" />
+</video>
+
+### Territory and Building
+
+We design the partition the map into continents and regions, which player have to gain claim and properly control before being able to exploit the resources within. We plan in the future this will unlock certain interesting interactions such as: Border Dispute with neighboring nations, some sort of De Jure and De Facto territorial claims, or maybe inheritance.
+
+<video controls className="w-[100%]">
+  <source src="/devlog_1_territory.webm" />
+</video>
+
+But for now we only just implemented the foundation of our city building system, as you can see in the video below:
+
+<video controls className="w-[100%]">
+  <source src="/devlog_1_building.webm" />
+</video>
+
+### Other Miscellaneous
+
+#### World Wrapping
+
+**_fun fact_**: the earth is round!
+
+<video controls className="w-[100%]">
+  <source src="/devlog_1_wrapping.webm" />
+</video>
+
+#### Ambient Audio
+
+We implement some pretty sounds, depends where the camera looks.
+
+<video controls className="w-[100%]">
+  <source src="/devlog_1_ambiance.mp4" />
+</video>
+
+#### Exploration and Fog of War
+
+Makes every movement a surprise.
+
+<video controls className="w-[100%]">
+  <source src="/devlog_1_fow.webm" />
+</video>
+
+#### Map Editor
+
+it's still incomplete, but also building a built-in map editor, for both our debugging tools and for our creatives player to design their own map and scenario.
+
+<video controls className="w-[100%]">
+  <source src="/devlog_1_editor.webm" />
+</video>
+
+### Conclusion
+
+Although it's still early and honestly no actual playable gameplay implemented so far, this past year building this game between juggling our day-jobs and this project, we take pride on the little things we've being able to build so far. And we hope you share our passion and keep looking for we're gonna share in the future.
+
+You can download the latest prototype below:
+
+<iframe
+  frameBorder="0"
+  src="https://itch.io/embed/3635851"
+  width="552"
+  height="167"
+>
+  <a href="https://blinfoldking.itch.io/politics">
+    [W.I.P] Politics by blinfoldking, Muruyung11, Ruslan Andreyovich
+  </a>
+</iframe>
+
+**Thank you** for reading this wall of text and See you in the next devlog '\_')7.
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+**PS**: We're urgently needed and artist, if you are one and interested in the
+project feel free to email me.

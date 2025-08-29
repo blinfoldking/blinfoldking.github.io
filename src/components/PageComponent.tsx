@@ -58,7 +58,7 @@ export default function PageComponent({
                 {title}
               </div>
               <div className="font-epetri flex justify-end font-bold text-2xl">
-                {title?.split(" ").join("")}
+                {title?.split(" ").join("").replace(/\W/g, "")}
               </div>
             </div>
             <div className="flex justify-start items-center pb-24 flex-col">
