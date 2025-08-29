@@ -4,4 +4,5 @@ export interface BlogMetadata {
   createdAt: string;
   bg: string;
   description: string;
+  published?: boolean;
 }

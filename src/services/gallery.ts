@@ -9,16 +9,18 @@ const galleryService = {
     );
 
     const posts: GalleryMetadata[] = await Promise.all(
-      files.map(async (file: string) => {
-        const slug = file.split(".")[0];
+      files
+        .filter((file: string) => file.split(".")[1] === "mdx")
+        .map(async (file: string) => {
+          const slug = file.split(".")[0];
 
-        const { metadata } = await import(`@/contents/gallery/${slug}.mdx`);
+          const { metadata } = await import(`@/contents/gallery/${slug}.mdx`);
 
-        return {
-          slug,
-          ...metadata,
-        };
-      }),
+          return {
+            slug,
+            ...metadata,
+          };
+        }),
     );
 
     return posts;

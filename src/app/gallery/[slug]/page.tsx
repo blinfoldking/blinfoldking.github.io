@@ -24,8 +24,8 @@ export default async function Gallery({ params }: any) {
   );
 
   return (
-    <PageView>
-      <Page></Page>
+    <PageView metadata={metadata}>
+      <Page />
     </PageView>
   );
 }

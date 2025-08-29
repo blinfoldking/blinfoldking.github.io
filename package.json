@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "post": "ts-node ./src/scripts/create_post.ts"
+    "post": "ts-node ./src/scripts/create_post.ts",
+    "gallery": "ts-node ./src/scripts/create_gallery.ts"
   },
   "dependencies": {
     "@fontsource-variable/ibm-plex-sans": "^5.2.6",
@@ -20,6 +21,7 @@
     "@types/mdx": "^2.0.13",
     "@uidotdev/usehooks": "github:uidotdev/usehooks",
     "next": "15.3.4",
+    "pts": "^0.12.9",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",

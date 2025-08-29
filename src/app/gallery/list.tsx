@@ -1,5 +1,7 @@
 "use client";
 
+import useNavigation from "@/hook/useNavigation";
+import { GalleryMetadata } from "@/interfaces/gallery";
 import { useMeasure } from "@uidotdev/usehooks";
 
 export default function GalleryList({ data }: { data: any[] }) {
@@ -8,7 +10,6 @@ export default function GalleryList({ data }: { data: any[] }) {
   let columns = [];
 
   const cols = Math.min(4, data.length);
-  console.log(cols);
   const rows = Math.floor(data.length / cols);
   const rem = data.length % cols;
 
@@ -16,19 +17,25 @@ export default function GalleryList({ data }: { data: any[] }) {
     let column = [];
     for (let j = 0; j < rows; j++) {
       const idx = i * rows + j;
-      column.push(data[idx]);
+      const item = data[idx];
+      console.log({ item }, idx);
+      column.push(item);
     }
 
     columns.push(column);
   }
 
   for (let i = 0; i < rem; i++) {
-    const idx = cols + rows + i;
-    const target = i % 2 == 0 ? 0 : 2;
-    columns[target].push(data[idx]);
+    const idx = cols + rows + i - 1;
+    const target = i % 2 == 0 ? 1 : 3;
+    const item = data[idx];
+    console.log({ item }, idx);
+    columns[target] = [item, ...columns[target]];
   }
 
   columns.reverse();
+
+  const { navigate } = useNavigation();
 
   return (
     <div
@@ -45,7 +52,7 @@ export default function GalleryList({ data }: { data: any[] }) {
       {columns.map((row, i) => {
         return (
           <div className="grid gap-4" key={i}>
-            {row.map((item, j) => (
+            {row.map((item: GalleryMetadata, j) => (
               <div
                 key={j}
                 style={{
@@ -53,22 +60,22 @@ export default function GalleryList({ data }: { data: any[] }) {
                     ? `${height / Math.max(...columns.map((c) => c.length))}px`
                     : "300px",
                 }}
-                className={`max-w-full rounded-lg overflow-hidden shadow-md hover:shadow-xl hover:scale-105 hover:z-50 transition`}
+                onClick={
+                  item.link
+                    ? () => window.open(item.link)
+                    : () => navigate(`/gallery/${item.slug}`)
+                }
+                className={`max-w-full rounded-lg overflow-hidden shadow-md hover:shadow-xl hover:scale-105 hover:z-50 transition grayscale hover:grayscale-0`}
               >
                 <div
                   className="h-[100%] w-[100%] justify-center items-center flex"
                   style={{
-                    background:
-                      "url(https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg)",
+                    background: `url(${item?.thumbnail ?? "cat-typing.gif"})`,
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                   }}
-                >
-                  <div className="bg-black text-white">
-                    {i},{j}
-                  </div>
-                </div>
+                ></div>
               </div>
             ))}
           </div>
