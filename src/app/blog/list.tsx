@@ -32,7 +32,7 @@ export default function BlogList({ posts }: { posts: BlogMetadata[] }) {
             onChange={(e) => setSearchQuery(e.target.value)}
           ></input>
         </div>
-        <div className="flex-col flex pt-4 h-[100%] w-[100%]">
+        <div className="flex-col flex pt-4 h-[100%] w-[100%] ">
           {filteredPosts.length ? (
             filteredPosts.map((post, i) => {
               return (
@@ -46,7 +46,7 @@ export default function BlogList({ posts }: { posts: BlogMetadata[] }) {
                     link
                     key={post.slug}
                     target={`/blog/${post.slug}`}
-                    className="pl-2 no-underline w-[100%] block"
+                    className="pl-2 no-underline w-[100%] block overflow-hidden text-ellipsis"
                   >
                     {post.slug}
                   </NavLink>

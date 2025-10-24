@@ -24,7 +24,9 @@ export default function BlogPreview({ post }: { post: BlogMetadata }) {
         <div className="h-[100%] bg-linear-to-t from-white to-transparent"></div>
       </div>
       <div className="h-[50%] bg-white">
-        <div className="bg-black text-white text-4xl pl-8">{post.title}</div>
+        <div className="bg-black text-white text-4xl pl-8 overflow-hidden text-ellipsis">
+          {post.title}
+        </div>
         <div className="p-8 flex justify-start">
           <div className="w-[45%]">{post.description}</div>
           <div className="w-[10%]"></div>

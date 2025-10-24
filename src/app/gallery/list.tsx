@@ -42,8 +42,8 @@ export default function GalleryList({ data }: { data: any[] }) {
       style={
         cols <= 4
           ? {
-              gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
-            }
+            gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
+          }
           : {}
       }
       className={`h-[100%] grid grid-cols-2 md:grid-cols-4 gap-4 content-center justify-center`}
