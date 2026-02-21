@@ -1,8 +1,92 @@
 
 export const metadata = {
-  title: "making-ai-agent-as-skeptic",
+  title: "Making an AI Agent as a Skeptic",
+  description: "fine! i'm gonna learn about agent...by building one",
   createdAt: "2026-02-21T14:02:11.180Z",
+  bg: "/sahur.jpeg"
 };
 
-# Hello World
+AI; Agent; LLM; RAG; Openclaw; and Lobster? Ah yes, a new buzzwords worthy to replace the NFT fever. My first experience in AI (LLM specifically) is around the first release of Copilot. I tried it, it spit out shitty codes that i spent more time to fix than if i write it myself. Up until recently that's the only use of LLM that i ever done.
 
+So what's change? Other than that LLM models have been so much better (Thanks to more competitions, especially from china), It's getting more easier to integrate with our workflow. Especially, if you are someone like me who have a attachment issue to Neovim, tools like [opencode](opencode.ai) is essential to use AI. While LLM todays still produce unusable code here and there, it becomes more reliable to handle simple task such as: summarising incomplete documentation (looking at you rust community) or help you debug. I mostly thinks of these models like a rubber duck that you can talks with.
+
+## Introducing Vizier
+
+So...why makes your own agents? Simple answer: "Why not?". But as for me, I have very specific needs.
+
+I have this knowledge base that i maintains, inspired by [this books](https://www.buildingasecondbrain.com/). The problem is that i build this knowledge base using [neorg](https://github.com/nvim-neorg/neorg), a Neovim markup format. Which means i lost access to my second brain each time i have to leave my ~~wizard tower~~ apartment. I've tried other solutions, like obsidian or notion for example, but it just doesn't click with me.
+
+Then i have this stupid idea: "Why don't i build a discord chatbot to my local network and manage my documents" and not long after, my prayer was answered.
+Openclaw (formerly Moltbot (formerly Clawdbot)) were trending, On hindsight it seems like a perfect answer to my problem. But there are 3 other problems:
+
+1. When i was to setup it, i notice that it doesn't support Deepseek platform directly. Why Deepseek then? well...I am cheap;
+2. There's multiple perfomance and security issues
+3. Javascript (i will not elaborate further)
+
+So just as any sane software engineer would do: I skim through openclaw source codes and deciced to reinvent the wheel (with rust, ofc). Thus, introducing [vizier](https://github.com/blinfoldking/vizier), 21st Century digital steward.
+
+### Design Goal and Architecture
+
+There are several criteria that i want from this project:
+1. I want it to be pretty lightweight, so i can run it on [SBC](https://en.wikipedia.org/wiki/Single-board_computer), like [raspberry pi](https://www.raspberrypi.com/)
+2. It have to be easy to setup, yet flexible to extend
+3. It should be easy to containerise
+4. It should be portable, if possible, i want everything fits in a single binary.
+
+So i came up with something as this:
+
+<img src="/vizier.drawio.png" width="100%"/>
+
+The systems will be separated into layers as above:
+1. **Apps**, the actual interface we use, some we planned to built-in (like TUI, and WebUI), but you could built your own client;
+2. **Channels**, a "gateway" to connect to any external Applications. For now, i just implement Discord API for chatbot, and websocket;
+3. **Transport**, because there will be multiple thread in the systems running different kind of services, this layer responsible to handle communications between threads. I specifically used [this library](https://github.com/zesterer/flume) to handle this asynchronously.
+4. **Session**, the actual brain of the systems, each connected channels will be served by its own agent session. for now you could only defined one kind of agent that shares tools and prompts. If this projects continue, perhaps multi-agent behaviour would be nice.
+    - **LLM Provider**, currently I've only implemented few providers: Deepseek (my beloved), Openrouter (for flexibility), Ollama (for local development).
+    - **Tools**, there only limited tools for now, but i figure its powerful enough as it is. There's a brave search tools, sqlite vectory database, heck you can enable the agent to run an os command (do it at your own risk).
+
+### Try It!
+
+So what's the results? Well you can try it yourselves!
+
+run this commands:
+```sh 
+# install vizier
+cargo install vizier-ai
+
+# initial setup
+vizier-ai onboard
+
+# run the agent
+vizier-ai run
+```
+
+#### Vizier in action
+
+<iframe width="100%" height="560"
+src="https://www.youtube.com/embed/CUZOzSirWj8"
+title="YouTube video player"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+allowfullscreen></iframe>
+
+
+#### Some numbers
+
+The compiled binary only takes **40MB** of disk space. while it only takes around **33MB** of memory.
+![](/vizier-memory.png)
+
+## Conclusion and What's Next
+
+Well i achieved what i set out to do. I basically have overengineer my journal. While it is technically "finished".
+I intend to add more features to this thing (if i have the time to do so). Meanwhile you could also try it out yourselves and let me know if found anything that i could improve.
+
+### It's open source!
+
+Originally, i plan to kept this to myself. But if have so much fun and still thinking about ideas to add to this project. So i decide, might as well open it to the public. Perhaps, i will find new ideas for the projects.
+
+And if you have any idea or features you would like to add, feel free to PR or let me know. Meanwhile, feel free to peruse the sphagetty code here:
+
+<div class="flex w-[100%] justify-center">
+    <a class="bg-black text-white no-underline p-4 hover:bg-white hover:text rounded-md" target="_blank" href="https://github.com/blinfoldking/vizier">Click Here to start Contribute</a>
+</div>
