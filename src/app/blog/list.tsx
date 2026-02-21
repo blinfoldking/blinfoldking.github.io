@@ -5,6 +5,7 @@ import { BlogMetadata } from "@/interfaces/blog";
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import BlogPreview from "./preview";
+import { useMeasure } from "@uidotdev/usehooks";
 
 export default function BlogList({ posts }: { posts: BlogMetadata[] }) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -21,9 +22,11 @@ export default function BlogList({ posts }: { posts: BlogMetadata[] }) {
     }
   }, [searchQuery]);
 
+  const [ref, { width, height }] = useMeasure();
+
   return (
-    <div className="bg-white h-[100%] w-[100%] flex overflow-hidden">
-      <div className="sm:w-[100%] md:w-[33%] h-[100%] border-r-1 border-dashed p-4">
+    <div className="bg-white h-[100%] w-[100%] flex overflow-hidden justify-center items-center">
+      <div className="sm:w-[100%] md:w-[100vw] h-[100%] border-r-1 border-dashed pl-4 z-10 flex flex-col justify-center items-center">
         <div className="rounded-full border-1 border-gray-500 pl-5 pr-5 inset-shadow-xs flex items-center">
           <FaSearch className="text-gray-500" />
           <input
@@ -32,24 +35,48 @@ export default function BlogList({ posts }: { posts: BlogMetadata[] }) {
             onChange={(e) => setSearchQuery(e.target.value)}
           ></input>
         </div>
-        <div className="flex-col flex pt-4 h-[100%] w-[100%] ">
+        <div className="flex-col flex pt-4 w-[100%]">
           {filteredPosts.length ? (
             filteredPosts.map((post, i) => {
               return (
                 <div
-                  className={`w-[100%] ${i % 2 == 1 ? "bg-gray-300" : "bg-white"} border-b-1 border-dashed`}
                   key={post.slug}
-                  onMouseOver={() => setSelectedPost(post)}
-                  onMouseOut={() => setSelectedPost(null)}
+                  className={`w-[100%] ${i % 2 == 1 ? "bg-gray-300" : "bg-white"} group  border-dashed border-t border-b`}
+                  onClick={() => setSelectedPost(post)}
                 >
-                  <NavLink
-                    link
-                    key={post.slug}
-                    target={`/blog/${post.slug}`}
-                    className="pl-2 no-underline w-[100%] block overflow-hidden text-ellipsis"
+                  <div
+                    className={`group-hover:bg-black group-hover:text-white ${post.slug === selectedPost?.slug && 'bg-black text-white'}`}
                   >
-                    {post.slug}
-                  </NavLink>
+                    <div
+                      className="pl-2 no-underline w-[100%] block overflow-hidden text-ellipsis"
+                    >
+                      {post.slug}
+                    </div>
+                  </div>
+                  {post.slug === selectedPost?.slug &&
+
+                    <div className="border-l-1 border-dashed z-10" >
+                      <div className="z-20 p-4 absolute bg-gradient-to-r from-white via-white to-transparent" ref={ref}>
+
+                        <h1>{selectedPost.title}</h1>
+
+                        <p className="p-4 prose prose-sm">{selectedPost.description}</p>
+
+                        <NavLink link target={`/blog/${selectedPost.slug}`} className="border-b-1 border-dashed">Read More</NavLink>
+
+                      </div>
+                      <div
+                        style={{
+                          minWidth: width ? `${width}px` : "0",
+                          minHeight: `${height}px`,
+                          background: selectedPost.bg && `url('${selectedPost.bg}')`,
+                          backgroundRepeat: "no-repeat",
+                          backgroundSize: "cover",
+                          backgroundPosition: "center",
+                        }}
+                      ></div>
+                    </div>
+                  }
                 </div>
               );
             })
@@ -60,15 +87,18 @@ export default function BlogList({ posts }: { posts: BlogMetadata[] }) {
           )}
         </div>
       </div>
-      <div className="h-[100%] w-[100%] sm:hidden md:block">
-        {selectedPost ? (
-          <BlogPreview post={selectedPost}></BlogPreview>
-        ) : (
-          <div className="h-[100%] w-[100%] flex justify-center items-center">
-            <h1 className="text-4xl opacity-50">Select a Post</h1>
-          </div>
-        )}
-      </div>
+      {
+        // <div className="absolute h-[100%] w-[100%] sm:hidden md:block">
+        //         {selectedPost ? (
+        //           <BlogPreview post={selectedPost}></BlogPreview>
+        //         ) : (
+        //           <div className="h-[100%] w-[100%] flex justify-center items-center">
+        //             <h1 className="text-4xl opacity-50">Select a Post</h1>
+        //           </div>
+        //         )}
+        //       </div>
+
+      }
     </div>
   );
 }
