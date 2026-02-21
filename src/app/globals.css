@@ -23,6 +23,7 @@
   --animate-appear-l-500: appear-l 500ms ease-in-out;
   --animate-appear-l-750: appear-l 750ms ease-in-out;
   --animate-appear-l-1000: appear-l 1000ms ease-in-out;
+
   @keyframes appear-l {
     0% {
       opacity: 0;
@@ -35,6 +36,7 @@
 
   --animate-appear-500: appear 500ms ease-in-out;
   --animate-disappear-500: disappear 500ms ease-in-out;
+
   @keyframes appear {
     0% {
       opacity: 0;
@@ -84,15 +86,20 @@ a:hover {
   color: var(--background);
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
+@layer utilities {
 
-/* Hide scrollbar for IE, Edge and Firefox */
-.no-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
 }
 
 .vertical-text {
@@ -101,13 +108,16 @@ a:hover {
 }
 
 @layer utilities {
+
   /* Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
 
   .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
 }

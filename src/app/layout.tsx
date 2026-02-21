@@ -25,7 +25,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon-32x32.png" sizes="any" />
       </head>
-      <body className={` antialiased w-[100vw] h-[100vh] pt-4 pb-4 pl-12 `}>
+      <body className={` antialiased w-[100vw] h-[100vh] pt-4 pb-4 pl-12 no-scrollbar`}>
         <div className="absolute left-0 top-0 h-[100%] w-[45px]">
           <div className="flex flex-col items-center pt-10 gap-4 absolute justify-center w-[100%]">
             {[
@@ -57,7 +57,7 @@ export default function RootLayout({
             </div>
           </div>
         </div>
-        <div className="rounded-bl-xl rounded-tl-xl min-w-[100%] h-[100%] bg-white overflow-scroll inset-shadow-md">
+        <div className="rounded-bl-xl rounded-tl-xl min-w-[100%] h-[100%] bg-white overflow-scroll inset-shadow-md no-scrollbar">
           {children}
         </div>
       </body>

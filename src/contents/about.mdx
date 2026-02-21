@@ -1,6 +1,7 @@
 export const metadata = {
-  title: "blinfoldking",
-  bg: "https://images.pexels.com/photos/34521/space-shuttle-lift-off-liftoff-nasa.jpg",
+  title: "@blinfoldking",
+  bg: "/bg.png",
+  is_about: true
 };
 
 import WorkCard from "@/components/WorkCard";
@@ -30,6 +31,24 @@ Previously worked in various industry including: Aquaculture, Gaming, Finance, a
 ### Professional
 
 <WorkCard
+  company="Quipper School"
+  titles={[
+    {
+      name: "Senior Software Engineer",
+      stacks: [
+        "typescript",
+        "react",
+        "nextjs",
+        "go",
+        "ruby on rails",
+      ],
+    },
+  ]}
+  duration="Feb 2026 - Present"
+/>
+
+
+<WorkCard
   company="PT CIMB Niaga tbk."
   titles={[
     {
@@ -43,7 +62,7 @@ Previously worked in various industry including: Aquaculture, Gaming, Finance, a
       ],
     },
   ]}
-  duration="Sept 2024 - Present"
+  duration="Sept 2024 - Feb 2026"
 />
 
 <WorkCard
@@ -169,6 +188,15 @@ Previously worked in various industry including: Aquaculture, Gaming, Finance, a
 />
 
 ### Projects
+
+<WorkCard
+  company="Vizier"
+  titles={[
+    {
+      link: "https://github.com/blinfoldking/vizier",
+    },
+  ]}
+/>
 
 <WorkCard
   company="Paas.id"

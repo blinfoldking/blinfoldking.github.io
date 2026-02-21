@@ -1,9 +1,10 @@
 "use client";
 
 import { useMeasure } from "@uidotdev/usehooks";
-import { FaArrowDown, FaChevronLeft } from "react-icons/fa6";
+import { FaArrowDown, FaArtstation, FaChevronLeft, FaGithub, FaInstagram, FaItchIo, FaLinkedin, FaSquareGithub } from "react-icons/fa6";
 import NavLink from "./NavLink";
 import { RefObject, useEffect, useRef } from "react";
+import { FaInstagramSquare } from "react-icons/fa";
 
 export default function PageComponent({
   children,
@@ -12,13 +13,16 @@ export default function PageComponent({
   title,
   className,
   scroll,
+  is_about,
 }: {
   back?: boolean;
   children: React.ReactNode;
   bg?: string;
   title?: string;
+  subtitle?: string;
   className?: string;
   scroll?: number;
+  is_about?: boolean
 }) {
   const [ref, { width, height }] = useMeasure();
   const topRef = useRef(null);
@@ -60,6 +64,26 @@ export default function PageComponent({
               <div className="font-epetri flex justify-end font-bold text-2xl">
                 {title?.split(" ").join("").replace(/\W/g, "")}
               </div>
+              {
+                is_about &&
+                <>
+                  <div className="text-xl text-black pl-4 pt-4 pr-4 pb-1 flex justify-center w-fit">
+                    <div><span className="opacity-50">software_</span><span className="opacity-100 bg-black text-white">engineer</span></div>.
+                    <div><span className="opacity-50">game_</span><span className="opacity-100 bg-black text-white">designer</span></div>.
+                    <div><span className="opacity-50">digital_</span><span className="opacity-100 bg-black text-white">illustrator</span></div>.
+                  </div>
+
+
+                  <div className="mt-4 flex-row flex w-[300px] justify-between items-center">
+                    <a target="_blank" href="https://linkedin.com/in/ganeshad/" className="p-1 rounded-sm text-4xl"><FaLinkedin /></a>
+                    <a target="_blank" href="https://github.com/blinfoldking" className="p-1 hover:rounded-sm text-4xl"><FaGithub /></a>
+                    <a target="_blank" href="https://blinfoldking.itch.io" className="p-1 hover:rounded-sm text-4xl"><FaItchIo /></a>
+                    <a target="_blank" href="https://instagram.com/blinfoldking" className="p-1 hover:rounded-sm text-4xl"><FaInstagram /></a>
+                    <a target="_blank" href="https://artstation.com/blinfoldking" className="p-1 hover:rounded-sm text-4xl"><FaArtstation /></a>
+                  </div>
+                </>
+              }
+
             </div>
             <div className="flex justify-start items-center pb-24 flex-col">
               <div
@@ -82,6 +106,6 @@ export default function PageComponent({
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
