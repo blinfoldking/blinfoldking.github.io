@@ -3,6 +3,7 @@
 import useNavigation from "@/hook/useNavigation";
 import { GalleryMetadata } from "@/interfaces/gallery";
 import { useMeasure } from "@uidotdev/usehooks";
+import Image from "next/image"
 
 export default function GalleryList({ data }: { data: any[] }) {
   const [ref, { height }] = useMeasure();
@@ -42,7 +43,7 @@ export default function GalleryList({ data }: { data: any[] }) {
       style={
         cols <= 4
           ? {
-            gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
+            gridTemplateColumns: `repeat(${cols}, minmax(0, 2fr))`,
           }
           : {}
       }
@@ -56,9 +57,7 @@ export default function GalleryList({ data }: { data: any[] }) {
               <div
                 key={j}
                 style={{
-                  minHeight: height
-                    ? `${height / Math.max(...columns.map((c) => c.length))}px`
-                    : "300px",
+                  minHeight: "300px",
                 }}
                 onClick={
                   item.link
@@ -67,15 +66,7 @@ export default function GalleryList({ data }: { data: any[] }) {
                 }
                 className={`max-w-full rounded-lg overflow-hidden shadow-md hover:shadow-xl hover:scale-105 hover:z-50 transition grayscale hover:grayscale-0`}
               >
-                <div
-                  className="h-[100%] w-[100%] justify-center items-center flex"
-                  style={{
-                    background: `url(${item?.thumbnail ?? "cat-typing.gif"})`,
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                  }}
-                ></div>
+                <Image src={item?.thumbnail ?? "cat-typing.gif"} width={100} height={100} alt="" className="h-full w-full object-cover" />
               </div>
             ))}
           </div>

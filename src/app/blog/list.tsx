@@ -25,9 +25,9 @@ export default function BlogList({ posts }: { posts: BlogMetadata[] }) {
   const [ref, { width, height }] = useMeasure();
 
   return (
-    <div className="bg-white h-[100%] w-[100%] flex overflow-hidden justify-center items-center">
-      <div className="sm:w-[100%] md:w-[100vw] h-[100%] border-r-1 border-dashed pl-4 z-10 flex flex-col justify-center items-center">
-        <div className="rounded-full border-1 border-gray-500 pl-5 pr-5 inset-shadow-xs flex items-center">
+    <div className="bg-white h-[100%] w-[100%] flex justify-center items-center overflow-scroll no-scrollbar">
+      <div className="sm:w-[100%] md:w-[100vw] h-[100%] border-r-1 border-dashed pl-4 z-10 flex flex-col justify-center items-center no-scrollbar">
+        <div className="rounded-full border-1 border-gray-500 pl-5 pr-5 inset-shadow-xs flex items-center no-scrollbar">
           <FaSearch className="text-gray-500" />
           <input
             className="ml-4 border-none w-[100%]"
@@ -35,7 +35,7 @@ export default function BlogList({ posts }: { posts: BlogMetadata[] }) {
             onChange={(e) => setSearchQuery(e.target.value)}
           ></input>
         </div>
-        <div className="flex-col flex pt-4 w-[100%]">
+        <div className="flex-col flex pt-4 w-[100%] no-scrollbar">
           {filteredPosts.length ? (
             filteredPosts.map((post, i) => {
               return (
@@ -45,18 +45,18 @@ export default function BlogList({ posts }: { posts: BlogMetadata[] }) {
                   onClick={() => setSelectedPost(post)}
                 >
                   <div
-                    className={`group-hover:bg-black group-hover:text-white ${post.slug === selectedPost?.slug && 'bg-black text-white'}`}
+                    className={`pl-2 group-hover:bg-black group-hover:text-white ${post.slug === selectedPost?.slug && 'bg-black text-white pl-2'}`}
                   >
                     <div
-                      className="pl-2 no-underline w-[100%] block overflow-hidden text-ellipsis"
+                      className="no-underline w-[100%] block overflow-hidden text-ellipsis"
                     >
                       {post.slug}
                     </div>
                   </div>
                   {post.slug === selectedPost?.slug &&
 
-                    <div className="border-l-1 border-dashed z-10" >
-                      <div className="z-20 p-4 absolute bg-gradient-to-r from-white via-white to-transparent" ref={ref}>
+                    <div className="border-l-1 border-dashed z-10 w-[100%] overflow-hidden relative" >
+                      <div className="z-20 p-4 absolute bg-gradient-to-r from-white via-white to-transparent w-[100%]" ref={ref}>
 
                         <h1>{selectedPost.title}</h1>
 
@@ -69,12 +69,23 @@ export default function BlogList({ posts }: { posts: BlogMetadata[] }) {
                         style={{
                           minWidth: width ? `${width}px` : "0",
                           minHeight: `${height}px`,
-                          background: selectedPost.bg && `url('${selectedPost.bg}')`,
-                          backgroundRepeat: "no-repeat",
-                          backgroundSize: "cover",
-                          backgroundPosition: "center",
                         }}
-                      ></div>
+
+                        className="flex flex-row"
+                      >
+                        <div className="w-[50%]"></div>
+                        <div
+                          style={{
+                            minWidth: "50%",
+
+                            background: selectedPost.bg && `url('${selectedPost.bg}')`,
+                            backgroundRepeat: "no-repeat",
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                          }}
+                        ></div>
+                      </div>
+
                     </div>
                   }
                 </div>
